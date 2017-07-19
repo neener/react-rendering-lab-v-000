@@ -11,6 +11,13 @@ class Rating extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps){
+    let newState = {increasing: false, decreasing:false};
+    if(this.props.rating < nextProps.rating) newState.increasing = true;
+    else if (this.props.rating > nextProps.rating) newState.decreasing = true;
+    this.setState(newState);
+  }
+
   render() {
     let trend = 'stable';
     if (this.state.increasing) {
